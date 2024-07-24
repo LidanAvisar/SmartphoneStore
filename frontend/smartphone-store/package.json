@@ -4,8 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
-    "start:backend": "cd \"/Users/lydnbysr/SmartphoneStore - projcet/backend/SmartphoneStoreApi\" && dotnet run",
-    "start:frontend": "cd \"/Users/lydnbysr/SmartphoneStore - projcet/frontend\" && ng serve",
+    "start:backend": "cd ../../backend/SmartphoneStoreApi && dotnet run",
+    "start:frontend": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
