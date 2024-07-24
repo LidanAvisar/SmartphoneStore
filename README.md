@@ -2,7 +2,7 @@
 
 ## Overview
 
-Welcome to the Smartphone Store Application! This project is a full-featured web application designed to manage and purchase smartphones. It is built with Angular for the frontend and ASP.NET Core for the backend, providing a seamless and responsive user experience. Key features include secure authentication, real-time updates, and Docker integration for easy deployment.
+Welcome to the Smartphone Store Application! This project is a full-featured web application designed to manage and purchase smartphones. It is built with Angular for the frontend and ASP.NET Core for the backend, providing a seamless and responsive user experience. Key features include secure authentication, real-time updates.
 
 ## Features
 
@@ -17,7 +17,6 @@ Welcome to the Smartphone Store Application! This project is a full-featured web
 - **Backend:** ASP.NET Core
 - **Database:** Entity Framework Core with MySQL
 - **Real-Time Communication:** SignalR
-- **Containerization:** Docker
 - **Authentication:** JWT (JSON Web Tokens)
 
 ## Getting Started
