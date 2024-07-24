@@ -22,14 +22,6 @@ Welcome to the Smartphone Store Application! This project is a full-featured web
 
 ## Getting Started
 
-### Prerequisites
-
-Before you begin, ensure you have the following installed:
-
-- [Node.js](https://nodejs.org/en/download/)
-- [npm](https://www.npmjs.com/get-npm)
-- [.NET 6 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
-
 ### Installation
 
 1. **Clone the repository:**
