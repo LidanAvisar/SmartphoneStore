@@ -56,7 +56,7 @@ Username: admin
 Password: admin1234
 For regular user access, register a new account.
 
-Product Management
+#### Product Management
 **Admin Users:** Can add, edit, and delete products.
 
 **Regular Users:** Can view and purchase products.
