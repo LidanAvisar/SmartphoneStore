@@ -31,7 +31,7 @@ Welcome to the Smartphone Store Application! This project is a full-featured web
 2. **Install dependencies:**
    ```bash
    
-    cd SmartphoneStore
+    cd SmartphoneStore/fronted/smartphone-store
     npm install
     npm start
 
