@@ -1,6 +1,5 @@
 <h2>Products</h2>
 
-<!-- Filter input and dropdown for category -->
 <input type="text" placeholder="Filter products" [(ngModel)]="filterText" (input)="applyFilter()">
 <select [(ngModel)]="filterCategory" (change)="applyFilter()">
   <option value="all">All</option>

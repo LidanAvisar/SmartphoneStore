@@ -19,7 +19,7 @@ builder.Services.AddCors(options =>
             builder.WithOrigins("http://localhost:4200")
                    .AllowAnyHeader()
                    .AllowAnyMethod()
-                   .AllowCredentials(); // Allow credentials for SignalR
+                   .AllowCredentials(); 
         });
 });
 
@@ -38,7 +38,7 @@ app.UseHttpsRedirection();
 
 app.UseRouting();
 
-app.UseCors("AllowSpecificOrigin"); // Use the specific CORS policy
+app.UseCors("AllowSpecificOrigin"); 
 
 app.UseAuthentication();
 app.UseAuthorization();

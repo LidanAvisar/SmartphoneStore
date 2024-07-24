@@ -12,7 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { HttpClientModule } from '@angular/common/http';
 
-localStorage.clear(); // Clear local storage on startup
+localStorage.clear(); 
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -25,7 +25,7 @@ bootstrapApplication(AppComponent, {
       MatInputModule,
       MatButtonModule,
       MatToolbarModule,
-      HttpClientModule // Ensure HttpClientModule is included here
+      HttpClientModule 
     )
   ]
 }).catch(err => console.error(err));

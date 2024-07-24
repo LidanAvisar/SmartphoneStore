@@ -12,8 +12,8 @@ export class SignalRService {
   constructor() {
     this.hubConnection = new signalR.HubConnectionBuilder()
       .withUrl('http://localhost:5044/connectionHub', {
-        accessTokenFactory: () => localStorage.getItem('token') || '', // Ensure token is sent
-        withCredentials: true // Ensure credentials are sent
+        accessTokenFactory: () => localStorage.getItem('token') || '', 
+        withCredentials: true 
       })
       .build();
 

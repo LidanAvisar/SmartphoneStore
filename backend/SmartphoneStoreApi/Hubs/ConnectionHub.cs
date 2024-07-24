@@ -8,7 +8,7 @@ public class ConnectionHub : Hub
 
     public override async Task OnConnectedAsync()
     {
-        var username = Context.User?.Identity?.Name ?? Context.ConnectionId; // Use username from the context
+        var username = Context.User?.Identity?.Name ?? Context.ConnectionId; 
         _connections[Context.ConnectionId] = username;
         await Clients.All.SendAsync("UpdateConnectionStatus", _connections);
         await base.OnConnectedAsync();
