@@ -1,0 +1,6 @@
+@SmartphoneStoreApi_HostAddress = http://localhost:5044
+
+GET {{SmartphoneStoreApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

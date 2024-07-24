@@ -1,0 +1,19 @@
+<h2>Products</h2>
+
+<!-- Filter input and dropdown for category -->
+<input type="text" placeholder="Filter products" [(ngModel)]="filterText" (input)="applyFilter()">
+<select [(ngModel)]="filterCategory" (change)="applyFilter()">
+  <option value="all">All</option>
+  <option value="company">Company</option>
+  <option value="model">Model</option>
+  <option value="screenSize">Screen Size</option>
+  <option value="storageCapacity">Storage Capacity</option>
+  <option value="color">Color</option>
+</select>
+
+<div *ngFor="let product of filteredProducts">
+  <h3>{{ product.company }} - {{ product.model }}</h3>
+  <p>Screen Size: {{ product.screenSize }}</p>
+  <p>Storage Capacity: {{ product.storageCapacity }}</p>
+  <p>Color: {{ product.color }}</p>
+</div>

@@ -1,0 +1,12 @@
+<h2>Control Screen</h2>
+<div>
+  <h3>Connected Clients:</h3>
+  <ul>
+    <li *ngFor="let username of Object.values(connections)">
+      {{ username }}
+      <span [style.color]="getStatusColor(true)">
+        Connected
+      </span>
+    </li>
+  </ul>
+</div>

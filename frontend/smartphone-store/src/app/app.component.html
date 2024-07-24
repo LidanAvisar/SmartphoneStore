@@ -1,0 +1,44 @@
+<style>
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #6200ea; 
+    padding: 1rem;
+    color: white;
+  }
+
+  .navbar a {
+    color: white;
+    text-decoration: none;
+    margin: 0 1rem;
+    font-weight: bold;
+  }
+
+  .navbar a:hover {
+    text-decoration: underline;
+  }
+
+  .navbar .title {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  .router-outlet-container {
+    margin-top: 2rem;
+  }
+</style>
+
+<nav class="navbar">
+  <div class="title">Smartphone Store</div>
+  <div>
+    <a routerLink="/login" *ngIf="!isLoggedIn()">Login</a>
+    <a routerLink="/products" *ngIf="isLoggedIn()">Products</a>
+    <a routerLink="/add-product" *ngIf="isAdmin()">Add Product</a>
+    <a routerLink="/control" *ngIf="isAdmin()">Control Screen</a>
+    <a href="#" (click)="logout()" *ngIf="isLoggedIn()">Logout</a>
+  </div>
+</nav>
+<div class="router-outlet-container">
+  <router-outlet></router-outlet>
+</div>
