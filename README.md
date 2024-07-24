@@ -34,8 +34,7 @@ Before you begin, ensure you have the following installed:
 
 1. **Clone the repository:**
    ```bash
-   git clone (https://github.com/LidanAvisar/SmartphoneStore.git)
-   cd smartphone-store
+   git clone https://github.com/LidanAvisar/SmartphoneStore.git
    
 2. **Install dependencies:**
    ```bash
@@ -46,7 +45,7 @@ Before you begin, ensure you have the following installed:
 
 3. **Open your browser and navigate to:**
    ```bash
-   (http://localhost:4200)
+   http://localhost:4200
 
 ### Usage
 Login
