@@ -46,10 +46,7 @@ Before you begin, ensure you have the following installed:
 
 3. **Open your browser and navigate to:**
    ```bash
-   
-    [cd SmartphoneStore
-    npm install
-    npm start](http://localhost:4200)
+   (http://localhost:4200)
 
 ### Usage
 Login
@@ -61,4 +58,5 @@ For regular user access, register a new account.
 
 Product Management
 **Admin Users:** Can add, edit, and delete products.
+
 **Regular Users:** Can view and purchase products.
