@@ -10,7 +10,7 @@ using SmartphoneStoreApi.Data;
 namespace SmartphoneStoreApi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240720162754_InitialCreate")]
+    [Migration("20240729173245_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -18,7 +18,7 @@ namespace SmartphoneStoreApi.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.0")
+                .HasAnnotation("ProductVersion", "8.0.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("SmartphoneStoreApi.Models.Product", b =>
@@ -28,28 +28,43 @@ namespace SmartphoneStoreApi.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Color")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Company")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Model")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("ScreenSize")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("StorageCapacity")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("SmartphoneStoreApi.Models.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Role")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
                 });
 #pragma warning restore 612, 618
         }

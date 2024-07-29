@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using SmartphoneStoreApi.Data;
+using SmartphoneStoreApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +27,23 @@ builder.Services.AddCors(options =>
 builder.Services.AddSignalR();
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    context.Database.Migrate();
+    SeedData(context);
+}
+
+void SeedData(ApplicationDbContext context)
+{
+    if (!context.Users.Any())
+    {
+        context.Users.Add(new User { Username = "admin", Password = "admin1234", Role = "admin" });
+        context.Users.Add(new User { Username = "user", Password = "user1234", Role = "user" });
+        context.SaveChanges();
+    }
+}
 
 if (app.Environment.IsDevelopment())
 {

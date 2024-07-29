@@ -15,7 +15,7 @@ namespace SmartphoneStoreApi.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.0")
+                .HasAnnotation("ProductVersion", "8.0.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("SmartphoneStoreApi.Models.Product", b =>
@@ -25,28 +25,23 @@ namespace SmartphoneStoreApi.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Color")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Company")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Model")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("ScreenSize")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("StorageCapacity")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("SmartphoneStoreApi.Models.User", b =>
@@ -56,20 +51,17 @@ namespace SmartphoneStoreApi.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Password")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Role")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Username")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 #pragma warning restore 612, 618
         }
