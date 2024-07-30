@@ -10,9 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { HttpClientModule } from '@angular/common/http';
-
-localStorage.clear(); 
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -24,8 +22,8 @@ bootstrapApplication(AppComponent, {
       MatFormFieldModule,
       MatInputModule,
       MatButtonModule,
-      MatToolbarModule,
-      HttpClientModule 
-    )
+      MatToolbarModule
+    ),
+    provideHttpClient(withInterceptorsFromDi())
   ]
 }).catch(err => console.error(err));

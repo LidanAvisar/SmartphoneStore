@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../services/api.service';
 import { FormsModule } from '@angular/forms'; 
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -15,10 +16,12 @@ export class ProductsComponent implements OnInit {
   filteredProducts: any[] = [];
   filterText: string = '';
   filterCategory: string = 'all';
+  user: any;
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.user = this.route.snapshot.data['user'];
     this.apiService.getProducts().subscribe((data: any[]) => {
       this.products = data;
       this.filteredProducts = data; 

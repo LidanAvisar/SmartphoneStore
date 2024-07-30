@@ -6,8 +6,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
-import { ApiService } from '../services/api.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ApiService } from '../services/api.service';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -35,11 +35,13 @@ export class LoginComponent {
   onSubmit() {
     this.apiService.login(this.username, this.password).subscribe(
       (response) => {
+        console.log('Login successful, received token:', response.token); // Debugging log
         this.authService.setToken(response.token);
         this.authService.setRole(this.username === 'admin' && this.password === 'admin1234' ? 'admin' : 'user');
         this.router.navigate(['/products']);
       },
       (error) => {
+        console.error('Login failed', error); // Debugging log
         this.errorMessage = 'Invalid username or password';
       }
     );
