@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -22,6 +22,8 @@ import { ApiService } from '../services/api.service';
   styleUrls: ['./add-product.component.scss']
 })
 export class AddProductComponent {
+  @ViewChild('addProductForm') addProductForm!: NgForm;
+
   product = {
     company: '',
     model: '',
@@ -30,13 +32,23 @@ export class AddProductComponent {
     color: ''
   };
 
+  successMessage: string | null = null;
+
   constructor(private apiService: ApiService) { }
 
   onSubmit() {
-    this.apiService.addProduct(this.product).subscribe((response: any) => {
-      console.log('Product added', response);
-      this.resetForm();
-    });
+    if (this.addProductForm.valid) {
+      this.apiService.addProduct(this.product).subscribe(
+        (response: any) => {
+          console.log('Product added', response);
+          this.successMessage = 'The product has been added successfully.';
+          this.resetForm();
+        },
+        (error) => {
+          console.error('Error adding product', error);
+        }
+      );
+    }
   }
 
   resetForm() {
@@ -47,5 +59,6 @@ export class AddProductComponent {
       storageCapacity: '',
       color: ''
     };
+    this.addProductForm.resetForm();
   }
 }

@@ -3,7 +3,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 80px); 
+    height: calc(100vh - 80px);
     background-color: #f5f5f5;
     padding: 1rem;
   }
@@ -39,6 +39,10 @@
     border-radius: 4px;
   }
 
+  .form-field input.ng-invalid.ng-touched {
+    border-color: red;
+  }
+
   .submit-button {
     display: flex;
     justify-content: center;
@@ -58,6 +62,16 @@
   .submit-button button:hover {
     background-color: #3700b3;
   }
+
+  .error-message {
+    color: red;
+    margin-top: 0.5rem;
+  }
+
+  .success-message {
+    color: green;
+    margin-top: 0.5rem;
+  }
 </style>
 
 <div class="add-product-container">
@@ -67,26 +81,42 @@
       <div class="form-field">
         <label for="company">Company</label>
         <input id="company" name="company" [(ngModel)]="product.company" required>
+        <div *ngIf="addProductForm.controls['company']?.invalid && addProductForm.controls['company']?.touched" class="error-message">
+          Please enter a company.
+        </div>
       </div>
       <div class="form-field">
         <label for="model">Model</label>
         <input id="model" name="model" [(ngModel)]="product.model" required>
+        <div *ngIf="addProductForm.controls['model']?.invalid && addProductForm.controls['model']?.touched" class="error-message">
+          Please enter a model.
+        </div>
       </div>
       <div class="form-field">
         <label for="screenSize">Screen Size</label>
         <input id="screenSize" name="screenSize" [(ngModel)]="product.screenSize" required>
+        <div *ngIf="addProductForm.controls['screenSize']?.invalid && addProductForm.controls['screenSize']?.touched" class="error-message">
+          Please enter a screen size.
+        </div>
       </div>
       <div class="form-field">
         <label for="storageCapacity">Storage Capacity</label>
         <input id="storageCapacity" name="storageCapacity" [(ngModel)]="product.storageCapacity" required>
+        <div *ngIf="addProductForm.controls['storageCapacity']?.invalid && addProductForm.controls['storageCapacity']?.touched" class="error-message">
+          Please enter a storage capacity.
+        </div>
       </div>
       <div class="form-field">
         <label for="color">Color</label>
         <input id="color" name="color" [(ngModel)]="product.color" required>
+        <div *ngIf="addProductForm.controls['color']?.invalid && addProductForm.controls['color']?.touched" class="error-message">
+          Please enter a color.
+        </div>
       </div>
       <div class="submit-button">
-        <button type="submit">Add Product</button>
+        <button type="submit" [disabled]="addProductForm.invalid">Add Product</button>
       </div>
+      <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
     </form>
   </div>
 </div>
