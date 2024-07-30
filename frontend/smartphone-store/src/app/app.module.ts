@@ -7,11 +7,11 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'; // Import HttpClient correctly
-import { AuthInterceptor } from './services/auth.interceptor'; // Import the interceptor
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'; 
+import { AuthInterceptor } from './services/auth.interceptor';
 
-import { AuthGuard } from './auth.guard'; // Ensure AuthGuard is imported
-import { appRoutes } from './app.routes'; // Import the routes
+import { AuthGuard } from './auth.guard'; 
+import { appRoutes } from './app.routes'; 
 
 @NgModule({
   imports: [
@@ -26,7 +26,7 @@ import { appRoutes } from './app.routes'; // Import the routes
   ],
   providers: [
     AuthGuard, // Provide AuthGuard if not already provided
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true } // Register the interceptor
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ]
 })
 export class AppModule { }
