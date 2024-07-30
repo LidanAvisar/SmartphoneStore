@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -50,9 +51,9 @@ namespace SmartphoneStoreApi.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] UserLogin userLogin)
+        public async Task<IActionResult> Login([FromBody] User userLogin)
         {
-            User user = await ValidateUser(userLogin);
+            var user = await ValidateUser(userLogin);
             if (user == null)
             {
                 return Unauthorized();
@@ -67,7 +68,7 @@ namespace SmartphoneStoreApi.Controllers
             return Ok(new { token });
         }
 
-        private async Task<User?> ValidateUser(UserLogin userLogin)
+        private async Task<User?> ValidateUser(User userLogin)
         {
             if (string.IsNullOrEmpty(userLogin.Username) || string.IsNullOrEmpty(userLogin.Password))
             {
@@ -97,6 +98,25 @@ namespace SmartphoneStoreApi.Controllers
             }
 
             return user;
+        }
+
+        [Authorize]
+        [HttpGet("user")]
+        public async Task<IActionResult> GetUser()
+        {
+            var username = User.Identity?.Name;
+            if (string.IsNullOrEmpty(username))
+            {
+                return Unauthorized();
+            }
+
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == username);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(user);
         }
     }
 }

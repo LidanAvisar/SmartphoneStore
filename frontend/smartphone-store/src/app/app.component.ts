@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { AuthService } from './services/auth.service';
+import { SignalRService } from './services/signalr.service';
 
 @Component({
   standalone: true,
@@ -20,7 +21,10 @@ import { AuthService } from './services/auth.service';
 export class AppComponent {
   title = 'smartphone-store';
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private signalRService: SignalRService) {
+    // Initialize SignalR connection
+    this.signalRService.requestConnectionStatusUpdate();
+  }
 
   isLoggedIn(): boolean {
     return this.authService.isLoggedIn();
