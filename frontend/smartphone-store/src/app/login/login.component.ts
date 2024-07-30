@@ -35,7 +35,7 @@ export class LoginComponent {
   onSubmit() {
     this.apiService.login(this.username, this.password).subscribe(
       (response) => {
-        console.log('Login successful, received token:', response.token); // Debugging log
+        console.log('Login successful, received token:', response.token); 
         this.authService.setToken(response.token);
         this.authService.setRole(this.username === 'admin' && this.password === 'admin1234' ? 'admin' : 'user');
         this.router.navigate(['/products']);
