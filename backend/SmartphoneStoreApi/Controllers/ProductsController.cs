@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SmartphoneStoreApi.Data;
@@ -19,12 +20,14 @@ namespace SmartphoneStoreApi.Controllers
         }
 
         [HttpGet]
+        [Authorize] // Ensure that only authenticated users can access
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
             return await _context.Products.ToListAsync();
         }
 
         [HttpGet("{id}")]
+        [Authorize] // Ensure that only authenticated users can access
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
             var product = await _context.Products.FindAsync(id);
@@ -38,6 +41,7 @@ namespace SmartphoneStoreApi.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "admin")] // Only admins can update products
         public async Task<IActionResult> PutProduct(int id, Product product)
         {
             if (id != product.Id)
@@ -67,6 +71,7 @@ namespace SmartphoneStoreApi.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")] // Only admins can add new products
         public async Task<ActionResult<Product>> PostProduct(Product product)
         {
             _context.Products.Add(product);
@@ -76,6 +81,7 @@ namespace SmartphoneStoreApi.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "admin")] // Only admins can delete products
         public async Task<IActionResult> DeleteProduct(int id)
         {
             var product = await _context.Products.FindAsync(id);
