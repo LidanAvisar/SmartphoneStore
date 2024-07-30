@@ -23,5 +23,10 @@ namespace SmartphoneStoreApi.Hubs
             await Clients.All.SendAsync("UpdateConnectionStatus", _connections);
             await base.OnDisconnectedAsync(exception);
         }
+
+        public Task RequestConnectionStatusUpdate()
+        {
+            return Clients.Caller.SendAsync("UpdateConnectionStatus", _connections);
+        }
     }
 }

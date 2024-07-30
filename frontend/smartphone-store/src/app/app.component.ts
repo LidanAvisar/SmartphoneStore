@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common'; 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { AuthService } from './services/auth.service';
 import { SignalRService } from './services/signalr.service';
-
+import { LogoutService } from './services/logout.service';
 
 @Component({
   standalone: true,
@@ -22,7 +22,7 @@ import { SignalRService } from './services/signalr.service';
 export class AppComponent {
   title = 'smartphone-store';
 
-  constructor(private authService: AuthService, private signalRService: SignalRService) {
+  constructor(private authService: AuthService, private signalRService: SignalRService, private logoutService: LogoutService) {
     // Initialize SignalR connection
     this.signalRService.requestConnectionStatusUpdate();
   }
@@ -36,7 +36,12 @@ export class AppComponent {
   }
 
   logout(): void {
-    this.authService.clearToken();
+    this.logoutService.logout();
     window.location.href = '/login';
+  }
+
+  @HostListener('window:beforeunload', ['$event'])
+  handleBeforeUnload(event: Event): void {
+    this.logoutService.logout();
   }
 }
