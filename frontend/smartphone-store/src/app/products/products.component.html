@@ -10,9 +10,30 @@
   <option value="color">Color</option>
 </select>
 
-<div *ngFor="let product of filteredProducts">
-  <h3>{{ product.company }} - {{ product.model }}</h3>
-  <p>Screen Size: {{ product.screenSize }}</p>
-  <p>Storage Capacity: {{ product.storageCapacity }}</p>
-  <p>Color: {{ product.color }}</p>
-</div>
+<table>
+  <thead>
+    <tr>
+      <th>Company</th>
+      <th>Model</th>
+      <th>Screen Size</th>
+      <th>Storage Capacity</th>
+      <th>Color</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of filteredProducts">
+      <td><input [(ngModel)]="product.company" [readonly]="editingProduct?.id !== product.id" (ngModelChange)="onEditFieldChange('company', $event, product)"></td>
+      <td><input [(ngModel)]="product.model" [readonly]="editingProduct?.id !== product.id" (ngModelChange)="onEditFieldChange('model', $event, product)"></td>
+      <td><input [(ngModel)]="product.screenSize" [readonly]="editingProduct?.id !== product.id" (ngModelChange)="onEditFieldChange('screenSize', $event, product)"></td>
+      <td><input [(ngModel)]="product.storageCapacity" [readonly]="editingProduct?.id !== product.id" (ngModelChange)="onEditFieldChange('storageCapacity', $event, product)"></td>
+      <td><input [(ngModel)]="product.color" [readonly]="editingProduct?.id !== product.id" (ngModelChange)="onEditFieldChange('color', $event, product)"></td>
+      <td>
+        <button *ngIf="editingProduct?.id !== product.id" (click)="startEdit(product)">✏️</button>
+        <button *ngIf="editingProduct?.id === product.id" (click)="saveEdit()">💾</button>
+        <button *ngIf="product.id !== undefined" (click)="deleteProduct(product.id!)">🗑️</button>
+        <button *ngIf="editingProduct?.id === product.id" (click)="cancelEdit()">❌</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

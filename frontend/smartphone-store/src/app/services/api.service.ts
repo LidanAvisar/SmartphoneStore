@@ -13,34 +13,41 @@ export class ApiService {
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
+  private getHeaders(): HttpHeaders {
+    const token = this.authService.getToken();
+    return new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+  }
+
   login(username: string, password: string): Observable<any> {
     return this.http.post<any>(`${this.authUrl}/login`, { username, password });
   }
 
   getProducts(): Observable<Product[]> {
-    const token = this.authService.getToken();
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
-    });
+    const headers = this.getHeaders();
     return this.http.get<Product[]>(this.apiUrl, { headers });
   }
 
   addProduct(product: Product): Observable<Product> {
-    const token = this.authService.getToken();
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
-    });
+    const headers = this.getHeaders();
     return this.http.post<Product>(this.apiUrl, product, { headers });
   }
 
+  updateProduct(id: number, product: Product): Observable<Product> {
+    const headers = this.getHeaders();
+    console.log('Sending update request for product:', product);
+    return this.http.put<Product>(`${this.apiUrl}/${id}`, product, { headers });
+  }
+
+  deleteProduct(id: number): Observable<void> {
+    const headers = this.getHeaders();
+    return this.http.delete<void>(`${this.apiUrl}/${id}`, { headers });
+  }
+
   getUserDetails(): Observable<any> {
-    const token = this.authService.getToken();
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
-    });
+    const headers = this.getHeaders();
     return this.http.get<any>(`${this.authUrl}/user`, { headers });
   }
 }

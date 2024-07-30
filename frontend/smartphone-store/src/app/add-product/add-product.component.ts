@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { ApiService } from '../services/api.service';
+import { Product } from '../models/product';
 
 @Component({
   standalone: true,
@@ -24,7 +25,7 @@ import { ApiService } from '../services/api.service';
 export class AddProductComponent {
   @ViewChild('addProductForm') addProductForm!: NgForm;
 
-  product = {
+  product: Partial<Product> = {
     company: '',
     model: '',
     screenSize: '',
@@ -38,7 +39,7 @@ export class AddProductComponent {
 
   onSubmit() {
     if (this.addProductForm.valid) {
-      this.apiService.addProduct(this.product).subscribe(
+      this.apiService.addProduct(this.product as Product).subscribe(
         (response: any) => {
           console.log('Product added', response);
           this.successMessage = 'The product has been added successfully.';
